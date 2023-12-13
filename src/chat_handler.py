@@ -10,12 +10,12 @@ dotenv.load_dotenv()
 chat_model = ChatOpenAI()
 
 
-def handle_chat_message(message):
+def handle_chat_message(message, seed=400):
 
     human_message = HumanMessage(content=message)
 
     model_kwargs = {
-        "seed": 235,
+        "seed": seed
     }
 
     response = chat_model.invoke([human_message], **model_kwargs)
@@ -24,4 +24,4 @@ def handle_chat_message(message):
     return response.content
 
 
-print(handle_chat_message("Hello, world!"))
+print(handle_chat_message("Hello there"))
