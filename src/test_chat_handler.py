@@ -6,22 +6,11 @@ import chat_handler
 class TestChatHandler(unittest.TestCase):
     def setUp(self):
         self.message = "Hello, world!"
+        self.response_with_seed = "Hello! How can I assist you today?"
 
-    def test_store_conversation(self):
-        # reset the conversations
-        chat_handler.conversations = {}
-        chat_handler.store_conversation("user", self.message)
-        self.assertEqual(chat_handler.conversations["user"], [self.message])
-
-    def test_get_conversation(self):
-        # reset the conversations
-        chat_handler.conversations = {}
-        # First store a message
-        chat_handler.store_conversation("user", self.message)
-        # Then get the conversation
-        result = chat_handler.get_conversation("user")
-        # Assert that the result is the same as the message
-        self.assertEqual(result, [self.message])
+    def test_handle_chat_message(self):
+        result = chat_handler.handle_chat_message(self.message)
+        self.assertEqual(result, self.response_with_seed)
 
 
 if __name__ == '__main__':
